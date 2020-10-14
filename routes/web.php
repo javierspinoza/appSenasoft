@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('principal');
+    return view('contenido/contenido');
 });
 Route::get('rol','RolesController@index');
 Route::post('rol/registrar','RolesController@store');
