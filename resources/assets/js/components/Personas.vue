@@ -96,8 +96,43 @@
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                             <div class="col-md-9">
-                                <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre de persona">
+                                <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la persona">
                                 <span class="help-block">(*) Ingrese el nombre de la persona</span>
+                            </div>
+                        </div>                                
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Tipo documento</label>
+                            <div class="col-md-9">
+                                <input type="text" v-model="tp_documento" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la persona">
+                                <span class="help-block">(*) Ingrese el tipo de documento</span>
+                            </div>
+                        </div>                                
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Numero</label>
+                            <div class="col-md-9">
+                                <input type="number" v-model="numero" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la persona">
+                                <span class="help-block">(*) Ingrese el tipo de documento</span>
+                            </div>
+                        </div>                                
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Numero</label>
+                            <div class="col-md-9">
+                                <input type="text" v-model="direccion" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la persona">
+                                <span class="help-block">(*) Ingrese el tipo de documento</span>
+                            </div>
+                        </div>                                
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Numero</label>
+                            <div class="col-md-9">
+                                <input type="number" v-model="telefono" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la persona">
+                                <span class="help-block">(*) Ingrese el tipo de documento</span>
+                            </div>
+                        </div>                                
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Numero</label>
+                            <div class="col-md-9">
+                                <input type="text" v-model="email" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la persona">
+                                <span class="help-block">(*) Ingrese el tipo de documento</span>
                             </div>
                         </div>                                
                     </form>
@@ -118,7 +153,7 @@
         <div class="modal-dialog modal-danger" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar persona</h4>
+                    <h4 class="modal-title">Eliminar Persona</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">X</span>
                     </button>
@@ -178,7 +213,7 @@
             },
             listPer:function(page,criterio,buscar){
                 let me = this;
-                var url = "/persona?page="+ page+ '&criterio='+criterio+ '&buscar='+buscar;
+                var url = "/personas?page="+ page+ '&criterio='+criterio+ '&buscar='+buscar;
                 axios.get(url).then(function(response){
                     var respuesta = response.data;
                     me.arrayDatos = respuesta.personas.data;
@@ -190,7 +225,7 @@
             },
             regPer(){
                 let me = this;
-                var url = "/persona/registrar";
+                var url = "/personas/registrar";
                 axios.post(url,{
                     nombre: this.nombre,
                     tp_documento: this.tp_documento,
@@ -210,7 +245,7 @@
             },
             actPer(){
 	                let me = this;
-	                var url="/persona/actualizar";
+	                var url="/personas/actualizar";
                     axios.put(url,{
 		            id:this.idPer,
 		            nombre: this.nombre,
@@ -294,7 +329,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                 // let me = this;
-                var url="/persona/eliminar";
+                var url="/personas/eliminar";
                 axios.post(url,{
                 id:data['id']
             })

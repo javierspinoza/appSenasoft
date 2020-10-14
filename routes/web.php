@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('contenido/contenido');
+    return view('principal');
 });
+
+
+
+Route::get('persona','PersonasController@index'); 
+Route::post('/persona/registrar','PersonasController@store'); 
+Route::put('/persona/actualizar','PersonasController@update'); 
+Route::post('/persona/eliminar','PersonasController@destroy');

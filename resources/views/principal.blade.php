@@ -13,7 +13,7 @@
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
     <div id="app">
-
+<personas></personas>
         <header class="app-header navbar">
             <h3>SenaSoft</h3>
         </header>
