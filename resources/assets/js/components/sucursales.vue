@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <i class="fa  fa-bookmark"></i> Tenans
+                <i class="fa  fa-bookmark"></i> Sucursales
                 <button type="button" class="btn btn-primary" data-toggle="modal" @click="abrirModal('guardar')">
                     <i class="icon-plus"></i>&nbsp;Nuevo 
                 </button>
@@ -40,7 +40,7 @@
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" @click="abrirModal('editar', objeto)">
                                   <i class="icon-pencil"></i>
                                 </button> &nbsp;
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" @click="eliminarTen(objeto)">
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" @click="eliminarSu(objeto)">
                                   <i class="icon-trash"></i> 
                                 </button>
                             </td>                                                                        
@@ -96,16 +96,16 @@
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                             <div class="col-md-9">
-                                <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre del tenan">
-                                <span class="help-block">(*) Ingrese el nombre del tenan</span>
+                                <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la sucursal">
+                                <span class="help-block">(*) Ingrese el nombre de la sucursal</span>
                             </div>
                         </div>                                
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="cerrarModal" data-dismiss="modal">Cerrar</button>
-                    <button v-show="accion==0" type="button" @click="regTen" class="btn btn-primary">Guardar</button>
-                    <button v-show="accion" type="button" @click="actTen" class="btn btn-primary">Actualizar</button>
+                    <button v-show="accion==0" type="button" @click="regSu" class="btn btn-primary">Guardar</button>
+                    <button v-show="accion" type="button" @click="actSu" class="btn btn-primary">Actualizar</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -118,17 +118,17 @@
         <div class="modal-dialog modal-danger" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar tenan</h4>
+                    <h4 class="modal-title">Eliminar sucursal</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">X</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Estas seguro de eliminar este tenan?</p>
+                    <p>Estas seguro de eliminar este sucursal?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"  data-dismiss="modal">Cerrar</button>
-                    <button type="button" @click="eliminarTen" class="btn btn-danger">Eliminar</button>
+                    <button type="button" @click="eliminarSu" class="btn btn-danger">Eliminar</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -145,7 +145,8 @@
             return{
                 arrayDatos:[],
                 nombre:"",
-                idTen:0,
+                direccion:"",
+                idSu:0,
                 modal:0,
                 titulo:"",
                 accion:0,
@@ -153,7 +154,7 @@
                 pagination:{
                     total:0,
                     current_page:0,
-                    ten_page:0,
+                    su_page:0,
                     last_page:0,
                     from:0,
                     to:0
@@ -169,44 +170,46 @@
                 //va a la pagina actual
                 me.pagination.current_page = page;
                 //envia al metodo para traer los datos
-                me.listTen(page,criterio,buscar);
+                me.listSu(page,criterio,buscar);
             },
-            listTen:function(page,criterio,buscar){
+            listSu:function(page,criterio,buscar){
                 let me = this;
-                var url = "/tenan?page="+ page+ '&criterio='+criterio+ '&buscar='+buscar;
+                var url = "/sucursal?page="+ page+ '&criterio='+criterio+ '&buscar='+buscar;
                 axios.get(url).then(function(response){
                     var respuesta = response.data;
-                    me.arrayDatos = respuesta.tenan.data;
+                    me.arrayDatos = respuesta.sucursales.data;
                     me.pagination = respuesta.pagination;
                 })
                 .catch(function(error){
                     console.log(error);
                 });
             },
-            regTen(){
+            regSu(){
                 let me = this;
-                var url = "/tenan/registrar";
+                var url = "/sucursal/registrar";
                 axios.post(url,{
                     nombre: this.nombre,
+                    direccion: this.direccion,
                 })
                 .then(function(response){
                     me.mensaje('Se guardo correctamente');  
-                    me.listTen();
+                    me.listSu();
                     me.cerrarModal();
                 })
                 .catch(function(error){
                     console.log(error);
                 });  
             },
-            actTen(){
+            actSu(){
 	                let me = this;
-	                var url="/tenan/actualizar";
+	                var url="/sucursal/actualizar";
                     axios.put(url,{
-		            id:this.idTen,
-		            nombre: this.nombre,
+		            id:this.idSu,
+                    nombre: this.nombre,
+                    direccion: this.direccion,
                 })
                 .then(function(response){
-                    me.listTen();
+                    me.listSu();
                     me.mensaje('Se actualizo correctamente');
                     me.cerrarModal();
                 })
@@ -217,15 +220,16 @@
             abrirModal(accion,data=[]){
                 switch(accion){
                 case'guardar':
-                this.titulo = 'Registrar tenans';
+                this.titulo = 'Registrar sucursal';
                 this.accion = 0;
                 this.limpiar();
              break;
                 case 'editar':
-                this.titulo = 'Editar tenans';
+                this.titulo = 'Editar sucursal';
                 this.accion = 1;
-                this.idTen = data['id'];
+                this.idSu = data['id'];
                 this.nombre = data['nombre'];        
+                this.direccion = data['direccion'];        
              break;
                 default:
                 break;
@@ -256,7 +260,7 @@
                 timer: 2000
             })
             },
-             eliminarTen(data=[]){
+             eliminarSu(data=[]){
                  let me = this;
              Swal.fire({
                 title: 'Esta seguro de eliminarlo?',
@@ -269,12 +273,12 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                 // let me = this;
-                var url="/tenan/eliminar";
+                var url="/sucursal/eliminar";
                 axios.post(url,{
                 id:data['id']
             })
             .then(function(response){
-                me.listTen();
+                me.listSu();
                 Swal.fire({
                     title:"Se elimino correctamente!",
                     icon: 'success'
@@ -315,7 +319,7 @@
         },         
          mounted() {
          console.log('Component mounted.')
-                    this.listTen(1,this.criterio,this.buscar);
+                    this.listSu(1,this.criterio,this.buscar);
          }
   }
 </script>
