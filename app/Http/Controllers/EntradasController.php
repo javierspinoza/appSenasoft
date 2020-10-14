@@ -11,9 +11,7 @@ class EntradasController extends Controller
 
     $entradas = Entradas::join('proveedores', 'entradas.id_proveedores', '=', 'proveedores.id')
     ->join('sucursales', 'entradas.id_sucursales', '=', 'sucursales.id')
-    ->select(
-        'proveedores.nombre as nomProve',
-        'sucursales.nombre as nomSucur',)
+    ->select( 'proveedores.nombre as nomProve','sucursales.nombre as nomSucur',)
     ->orderBy('nombre','asc')->get();
 return [
     'entradas' => $entradas,

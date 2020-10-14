@@ -11,9 +11,7 @@ class BodegasController extends Controller
     public function index()
     {
     $bodegas=join('sucursales','bodegas.id_sucursal','=','bodegas.id')
-    ->select('bodegas.id', 
-            'bodegas.nombre', 
-            'sucursales.nombre as nomSucur')
+    ->select('sucursales.nombre as nomSucur')
             
     ->orderBy('nombre','asc')->get();
     return[
