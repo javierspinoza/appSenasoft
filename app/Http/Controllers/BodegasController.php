@@ -19,8 +19,6 @@ class BodegasController extends Controller
     ];
 }
 
-
- 
 public function store(Request $request)
     {
         $bodegas         = new Bodegas();

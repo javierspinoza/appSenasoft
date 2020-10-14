@@ -7,6 +7,7 @@ use\App\Usuarios;
 
 class UsuariosController extends Controller
 {
+
     public function index()
     {
         //
@@ -21,6 +22,7 @@ class UsuariosController extends Controller
     {
         //
     }
+
 
     public function destroy($id)
     {
