@@ -46,6 +46,7 @@ class ProductosController extends Controller
         $productos->precio_venta = $request->precio_venta;
         $productos->stock = $request->stock;
         $productos->descripcion = $request->descripcion;
+        $productos->id_tenan = $request->id_tenan;
         $productos->save();
     }
 
@@ -56,6 +57,7 @@ class ProductosController extends Controller
         $productos->precio_venta = $request->precio_venta;
         $productos->stock = $request->stock;
         $productos->descripcion = $request->descripcion;
+        $productos->id_tenan = $request->id_tenan;
         $productos->save();
     }
 

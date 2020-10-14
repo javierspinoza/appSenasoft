@@ -9,11 +9,7 @@ class PersonasController extends Controller
 {
     public function index()
     {
-        $personas = Personas::join(
-            'tenans',
-            'personas.id_tenan',
-            '=',
-            'tenan.id'
+        $personas = Personas::join('tenans','personas.id_tenan','=','tenan.id'
         )
             ->select('tenan.nombre as nomTen')
             ->orderBy('nombre', 'asc')
@@ -29,7 +25,7 @@ class PersonasController extends Controller
             ->orderBy('nombre', 'asc')
             ->get();
         return [
-            'Personas' => $personas,
+            'personas' => $personas,
         ];
     }
 

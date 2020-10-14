@@ -16,9 +16,7 @@ class TenanController extends Controller
     }
     public function getTenan(Request $request)
     {
-        $tenans = Tenan::select('id', 'nombre', 'nit')
-            ->orderBy('nombre', 'asc')
-            ->get();
+        $tenans = Tenan::select('id', 'nombre', 'nit')->orderBy('nombre', 'asc')->get();
         return [
             'tenans' => $tenans,
         ];

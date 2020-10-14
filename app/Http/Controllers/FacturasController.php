@@ -11,15 +11,7 @@ class FacturasController extends Controller
        
     }
 
-    public function getFact(Request $request)
-    {
-        $facturas = Facturas::select('id','date','iva','estado','total')->orderBy('id')->get();
-        return[
-            'facturas'=>$facturas
-        ];
-    }
-
-    public function store(Request $request)
+      public function store(Request $request)
     {
         $facturas         = new Facturas();
         $facturas->date   = $request->date;
