@@ -14,7 +14,7 @@
                         <a class="nav-link" href="#"><i class="icon-bag"></i> Componente 1</a>
                     </li>
                     <li @click="menu=2" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-bag"></i>Componente 2 </a>
+                        <a class="nav-link" href="#"><i class="icon-bag"></i>Personas</a>
                     </li>
                     <li @click="menu=3" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-bag"></i> Componente 3</a>
