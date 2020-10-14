@@ -13,6 +13,6 @@
         <componente></componente>
     </template>
     <template v-if="menu==5">
-        <componente></componente>
+        <roles></roles>
     </template>
 @endsection

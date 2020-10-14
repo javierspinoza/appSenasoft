@@ -23,7 +23,7 @@
                         <a class="nav-link" href="#"><i class="icon-bag"></i>Componente 4</a>
                     </li>
                     <li @click="menu=5" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-bag"></i> Componente 5</a>
+                        <a class="nav-link" href="#"><i class="icon-bag"></i> Roles</a>
                     </li>
                 </ul>
             </li>
