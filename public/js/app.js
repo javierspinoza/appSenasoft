@@ -51170,6 +51170,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.accion = 1;
                     this.idTenan = data['id'];
                     this.nombre = data['nombre'];
+                    this.nit = data['nit'];
                     break;
                 default:
                     break;
@@ -51181,6 +51182,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         limpiar: function limpiar() {
             this.nombre = '';
+            this.nit = '';
         },
         mensaje: function mensaje(msj) {
             Swal.fire({
@@ -54291,6 +54293,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         limpiar: function limpiar() {
             this.nombre = '';
+            this.direccion = '';
         },
         mensaje: function mensaje(msj) {
             Swal.fire({
@@ -54429,7 +54432,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(objeto.nomTen) }
+                      domProps: { textContent: _vm._s(objeto.nomTenan) }
                     }),
                     _vm._v(" "),
                     _c("td", [

@@ -27,18 +27,18 @@ class SucursalesController extends Controller
         $sucursales->save();
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $sucursales=Sucursales::fillOrFail($request->$id);
+        $sucursales=Sucursales::findOrfail($request->id);
         $sucursales->nombre=$request->nombre;
         $sucursales->direccion=$request->direccion;
         $sucursales->id_tenan=$request->idTenan;
         $sucursales->save();
         }
  
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $sucursales=Sucursales::fillOrFail($request->$id);
+        $sucursales=Sucursales::findOrfail($request->id);
         $sucursales->delete();
     }
 }

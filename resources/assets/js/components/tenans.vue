@@ -256,7 +256,8 @@
                         this.titulo='Editar empresa'
                         this.accion=1;
                         this.idTenan = data ['id'];
-                        this.nombre=data['nombre']
+                        this.nombre=data['nombre'];
+                        this.nit=data['nit'];
                         break;
                     default:
                         break;
@@ -268,6 +269,7 @@
             },
             limpiar(){
                 this.nombre='';
+                this.nit='';
             },
             mensaje(msj){
                 Swal.fire({

@@ -39,7 +39,7 @@
                         <tr v-for="objeto in arrayDatos" :key="objeto.id">
                             <td v-text="objeto.nombre"></td>
                               <td v-text="objeto.direccion"></td>
-                                <td v-text="objeto.nomTen"></td>
+                                <td v-text="objeto.nomTenan"></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" @click="abrirModal('editar', objeto)">
                                   <i class="icon-pencil"></i>
@@ -103,22 +103,22 @@
                                 <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la sucursal">
                                 <span class="help-block">(*) Ingrese el nombre de la sucursal</span>
                             </div>
-                        </div>
-                  <div class="form-group row">
+                            </div>
+                            <div class="form-group row">
                              <label class="col-md-3 form-control-label" for="text-input">Dirección</label>
                             <div class="col-md-9">
                                 <input type="text" v-model="direccion" id="direccion" name="direccion" class="form-control" placeholder="Dirección">
                                 <span class="help-block">(*) Ingrese la dirección</span>
                             </div>
-                                </div>
-                                <div class="form-group row">
-                             <label class="col-md-3 form-control-label" for="text-input">Empresa</label>
-                                <div class="col-md-9">
+                            </div>
+                            <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Empresa</label>
+                            <div class="col-md-9">
                                  <select class="form-control" v-model="idTenan" id="exampleFormControlSelect1">
                                     <option v-for="objeto in arrayTenan" :key="objeto.id" :value="objeto.id" v-text="objeto.nombre"></option>
                                 </select>
                                 <span class="help-block">(*) Seleccione la empresa</span>
-                                       </div> 
+                            </div> 
                         </div>   
                             
                                                    
@@ -228,7 +228,7 @@
                 axios.post(url,{
                     nombre: this.nombre,
                     direccion: this.direccion,
-                       idTenan:this.idTenan,
+                    idTenan:this.idTenan,
                 })
                 .then(function(response){
                     me.mensaje('Se guardo correctamente');  
@@ -282,6 +282,7 @@
             },
             limpiar(){
               this.nombre ='';
+              this.direccion ='';
             },
             mensaje(msj){
               Swal.fire({
