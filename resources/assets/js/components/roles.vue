@@ -163,6 +163,7 @@
             return{
                 arrayDatos:[],
                 nombre:'',
+                descripcion:'',
                 idRol:0,                
                 modal:0,
                 accion:0,
@@ -209,7 +210,7 @@
                 var url="/rol/registrar";
                 axios.post(url,{
                     nombre: this.nombre,
-                    descripcion: this.descripcion,
+                    descripcion: this.descripcion
                 })
                 .then(function(response){
                     me.listRol();
@@ -225,7 +226,7 @@
                 axios.put(url,{
                     id:this.idRol,
                     nombre: this.nombre,
-                    descripcion: this.descripcion,
+                    descripcion: this.descripcion
                 })
                 .then(function(response){
                     me.listRol();
@@ -278,7 +279,7 @@
                         this.accion=1;
                         this.idRol = data ['id'];
                         this.nombre=data['nombre'];                        
-                        this.descripcion=data['descripcion'];                        
+                        this.descripcion=data['descripcion']                        
                         break;
                     default:
                         break;
@@ -290,7 +291,7 @@
             },
             limpiar(){
                 this.nombre='';
-                this.descripcion='';
+                this.descripcion=''
             },
             mensaje(msj){
                 Swal.fire({
