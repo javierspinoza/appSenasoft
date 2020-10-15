@@ -9,9 +9,9 @@
     <template v-if="menu==3">
         <sucursales></sucursales>
     </template>
-    <template v-if="menu==4">
+    {{-- <template v-if="menu==4">
         <componente></componente>
-    </template>
+    </template> --}}
     <template v-if="menu==5">
         <roles></roles>
     </template>

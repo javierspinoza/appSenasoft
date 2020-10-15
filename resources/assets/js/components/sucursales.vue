@@ -114,7 +114,32 @@ export default {
                 console.log(error);
             })
         },
+<<<<<<< HEAD
         getTenan(){
+=======
+        methods: {
+            cambiarPagina(page,buscar,criterio){
+                let me = this;
+                //va a la pagina actual
+                me.pagination.current_page = page;
+                //envia al metodo para traer los datos
+                me.listSu(page,criterio,buscar);
+            },
+            
+            listSu:function(page,criterio,buscar){
+                let me = this;
+                var url = "/sucursal?page="+ page+ '&criterio='+criterio+ '&buscar='+buscar;
+                axios.get(url).then(function(response){
+                    var respuesta = response.data;
+                    me.arrayDatos = respuesta.sucursales;
+                    // me.pagination = respuesta.pagination;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+              getTenan(){
+>>>>>>> dayanna
             let me = this;
             var url = "/selecttenan";
             axios.get(url).then(function(response){

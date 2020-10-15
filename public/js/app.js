@@ -54121,6 +54121,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
                 me.arrayDatos = respuesta.sucursales;
+<<<<<<< HEAD
+=======
+                // me.pagination = respuesta.pagination;
+>>>>>>> dayanna
             }).catch(function (error) {
                 console.log(error);
             });
