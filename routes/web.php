@@ -44,3 +44,10 @@ Route::post('sucursal/eliminar','SucursalesController@destroy');
 
 Route::get('selectTenan', 'TenanController@getTenan');
 
+
+Route::get('/user', 'UserController@index');
+Route::post('/user/registrar', 'UserController@store');
+Route::put('/user/actualizar', 'UserController@update');
+Route::put('/user/desactivar', 'UserController@desactivar');
+Route::put('/user/activar', 'UserController@activar');
+

@@ -15,9 +15,9 @@ class RolesController extends Controller
         $criterio=$request->criterio;
 
         if ($buscar=='') {
-            $roles= Roles::orderBy('nombre','asc')->paginate(4);
+            $roles= Roles::orderBy('nombre','descripcion','asc')->paginate(4);
         }else {
-            $roles= Roles::where($criterio, 'like', '%'.$buscar. '%')-orderby('nombre','asc')->paginate(4);
+            $roles= Roles::where($criterio, 'like', '%'.$buscar. '%')-orderby('nombre','descripcion','asc')->paginate(4);
         }
 
 
@@ -46,6 +46,7 @@ class RolesController extends Controller
     {
         $roles= new Roles();
         $roles->nombre = $request->nombre;
+        $roles->descripcion = $request->descripcion;
         $roles->save();
     }
     
@@ -54,6 +55,7 @@ class RolesController extends Controller
     {
         $roles= Roles::findOrfail($request->id);
         $roles->nombre = $request->nombre;
+        $roles->descripcion = $request->descripcion;
         $roles->save();
     }
 
