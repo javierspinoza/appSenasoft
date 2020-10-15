@@ -1,10 +1,10 @@
 @extends('principal')
 @section('contenido')
     <template v-if="menu==1">
-        <componente></componente>
+        <persona></persona>
     </template>
     <template v-if="menu==2">
-        <persona></persona>
+        <producto></producto>
     </template>
     <template v-if="menu==3">
         <componente></componente>
