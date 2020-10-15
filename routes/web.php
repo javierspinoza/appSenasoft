@@ -20,6 +20,7 @@ Route::post('rol/registrar','RolesController@store');
 Route::put('rol/actualizar','RolesController@update');
 Route::post('rol/eliminar','RolesController@destroy');
 
+
 Route::get('tenan','TenanController@index');
 Route::post('tenan/registrar','TenanController@store');
 Route::put('tenan/actualizar','TenanController@update');
@@ -35,3 +36,11 @@ Route::get('selectTenan','ProductosController@getTenan');
 Route::post('producto/registrar','ProductosController@store');
 Route::put('producto/actualizar','ProductosController@update');
 Route::post('producto/eliminar','ProductosController@destroy');
+
+Route::get('sucursal','SucursalesController@index');
+Route::post('sucursal/registrar','SucursalesController@store');
+Route::put('sucursal/actualizar','SucursalesController@update');
+Route::post('sucursal/eliminar','SucursalesController@destroy');
+
+Route::get('selectTenan', 'TenanController@getTenan');
+

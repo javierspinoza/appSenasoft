@@ -8,8 +8,8 @@ class SucursalesController extends Controller
 {
     public function index()
     {
-        $sucursales = join('tenans', 'sucursales.id_tenan', '=', 'tenans.id')
-            ->select('sucursales.id','sucursales.nombre', 'tenan.nombre as nomTen')
+        $sucursales = Sucursales::join('tenans', 'sucursales.id_tenan', '=', 'tenans.id')
+            ->select('sucursales.id','sucursales.nombre','sucursales.direccion', 'tenans.nombre as nomTen')
             ->orderBy('nombre', 'asc')
             ->get();
         return [
@@ -29,7 +29,8 @@ class SucursalesController extends Controller
     {
         $sucursales = new Sucursales();
         $sucursales->nombre = $request->nombre;
-        $sucursales->id_tenan=$request->id_tenan;
+        $sucursales->direccion = $request->direccion;
+        $sucursales->id_tenan=$request->idTenan;
 
         $sucursales->save();
     }
@@ -38,6 +39,10 @@ class SucursalesController extends Controller
     {
         $sucursales = Sucursales::findOrFail($request->id);
         $sucursales->nombre = $request->nombre;
+        $sucursales->direccion = $request->direccion;
+        $sucursales->id_tenan=$request->idTenan;
+
+        
         $sucursales->save();
     }
 

@@ -16,6 +16,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('roles', require('./components/roles.vue'));
+<<<<<<< HEAD
 Vue.component('tenan', require('./components/tenans.vue'));
 Vue.component('persona', require('./components/Personas.vue'));
 <<<<<<< HEAD
@@ -23,6 +24,11 @@ Vue.component('persona', require('./components/Personas.vue'));
 =======
 Vue.component('producto', require('./components/Productos.vue'));
 // Vue.component('sucursales', require('./components/Sucursales.vue'));
+=======
+// Vue.component('personas', require('./components/Personas.vue'));
+// Vue.component('productos', require('./components/Productos.vue'));
+Vue.component('sucursales', require('./components/sucursales.vue'));
+>>>>>>> dayanna
 // Vue.component('tenans', require('./components/Tenans.vue'));
 // Vue.component('bodage', require('./components/Bodage.vue'));
 // Vue.component('facturas', require('./components/Facturas.vue'));
