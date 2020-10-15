@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('contenido/contenido');
 });
+
 Route::get('rol','RolesController@index');
 Route::post('rol/registrar','RolesController@store');
 Route::put('rol/actualizar','RolesController@update');
