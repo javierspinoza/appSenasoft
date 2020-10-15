@@ -19,3 +19,10 @@ Route::get('rol','RolesController@index');
 Route::post('rol/registrar','RolesController@store');
 Route::put('rol/actualizar','RolesController@update');
 Route::post('rol/eliminar','RolesController@destroy');
+
+Route::get('sucursal','SucursalesController@index');
+Route::post('sucursal/registrar','SucursalesController@store');
+Route::put('sucursal/actualizar','SucursalesController@update');
+Route::post('sucursal/eliminar','SucursalesController@destroy');
+
+Route::get('selectTenan', 'TenanController@getTenan');

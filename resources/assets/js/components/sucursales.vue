@@ -29,13 +29,17 @@
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
                         <tr>
-                            <th>Nombre</th>                                   
+                            <th>Nombre</th>  
+                             <th>Dirección</th>     
+                            <th>Empresa</th>                             
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="objeto in arrayDatos" :key="objeto.id">
                             <td v-text="objeto.nombre"></td>
+                              <td v-text="objeto.direccion"></td>
+                                <td v-text="objeto.nomTen"></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" @click="abrirModal('editar', objeto)">
                                   <i class="icon-pencil"></i>
@@ -47,7 +51,7 @@
                         </tr>                                                                                                                                
                     </tbody>
                 </table>
-            <nav>
+            <!-- <nav>
                 <ul class="pagination">
                     <li class="page-item" v-if="pagination.current_page > 1">
                     <a
@@ -77,7 +81,7 @@
                     >Sig</a>
                         </li>
                     </ul>
-            </nav>
+            </nav> -->
             </div>
         </div>
     </div>
@@ -99,7 +103,25 @@
                                 <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la sucursal">
                                 <span class="help-block">(*) Ingrese el nombre de la sucursal</span>
                             </div>
-                        </div>                                
+                        </div>
+                  <div class="form-group row">
+                             <label class="col-md-3 form-control-label" for="text-input">Dirección</label>
+                            <div class="col-md-9">
+                                <input type="text" v-model="direccion" id="direccion" name="direccion" class="form-control" placeholder="Dirección">
+                                <span class="help-block">(*) Ingrese la dirección</span>
+                            </div>
+                                </div>
+                                <div class="form-group row">
+                             <label class="col-md-3 form-control-label" for="text-input">Empresa</label>
+                                <div class="col-md-9">
+                                 <select class="form-control" v-model="idTenan" id="exampleFormControlSelect1">
+                                    <option v-for="objeto in arrayTenan" :key="objeto.id" :value="objeto.id" v-text="objeto.nombre"></option>
+                                </select>
+                                <span class="help-block">(*) Seleccione la empresa</span>
+                                       </div> 
+                        </div>   
+                            
+                                                   
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -146,19 +168,23 @@
                 arrayDatos:[],
                 nombre:"",
                 direccion:"",
+                id_tenan:0,
                 idSu:0,
                 modal:0,
                 titulo:"",
                 accion:0,
+
+                arrayTenan:[],
+                idTenan:0,
                //variables de pagination
-                pagination:{
-                    total:0,
-                    current_page:0,
-                    su_page:0,
-                    last_page:0,
-                    from:0,
-                    to:0
-                },
+                // pagination:{
+                //     total:0,
+                //     current_page:0,
+                //     su_page:0,
+                //     last_page:0,
+                //     from:0,
+                //     to:0
+                // },
                 offset:3,
                 buscar:'',
                 criterio:'nombre'
@@ -172,24 +198,37 @@
                 //envia al metodo para traer los datos
                 me.listSu(page,criterio,buscar);
             },
+            
             listSu:function(page,criterio,buscar){
                 let me = this;
                 var url = "/sucursal?page="+ page+ '&criterio='+criterio+ '&buscar='+buscar;
                 axios.get(url).then(function(response){
                     var respuesta = response.data;
-                    me.arrayDatos = respuesta.sucursales.data;
-                    me.pagination = respuesta.pagination;
+                    this.arrayDatos = respuesta.sucursales;
+                    // me.pagination = respuesta.pagination;
                 })
                 .catch(function(error){
                     console.log(error);
                 });
             },
+              getTenan(){
+            let me = this;
+            var url = "/selectTenan";
+            axios.get(url).then(function(response){
+                var respuesta = response.data;
+                me.arrayTenan = respuesta.tenans;
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        },
             regSu(){
                 let me = this;
                 var url = "/sucursal/registrar";
                 axios.post(url,{
                     nombre: this.nombre,
                     direccion: this.direccion,
+                       idTenan:this.idTenan,
                 })
                 .then(function(response){
                     me.mensaje('Se guardo correctamente');  
@@ -207,6 +246,7 @@
 		            id:this.idSu,
                     nombre: this.nombre,
                     direccion: this.direccion,
+                    idTenan:this.idTenan,
                 })
                 .then(function(response){
                     me.listSu();
@@ -228,8 +268,9 @@
                 this.titulo = 'Editar sucursal';
                 this.accion = 1;
                 this.idSu = data['id'];
-                this.nombre = data['nombre'];        
+                this.nombre = data['nombre'];  
                 this.direccion = data['direccion'];        
+                this.idTenan = data["id"];      
              break;
                 default:
                 break;
@@ -319,7 +360,8 @@
         },         
          mounted() {
          console.log('Component mounted.')
-                    this.listSu(1,this.criterio,this.buscar);
+         this.getTenan();
+            this.listSu(1,this.criterio,this.buscar);
          }
   }
 </script>

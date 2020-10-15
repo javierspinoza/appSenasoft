@@ -7,7 +7,7 @@
         <personas></personas>
     </template>
     <template v-if="menu==3">
-        <componente></componente>
+        <sucursales></sucursales>
     </template>
     <template v-if="menu==4">
         <componente></componente>
