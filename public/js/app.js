@@ -53998,7 +53998,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-content{\n   width: 100% !important;\n   position: absolute !important;\n}\n.mostrar{\n   display: list-item !important;\n   opacity: 1 !important;\n   position: absolute !important;\n}\n", ""]);
+exports.push([module.i, "\n.modal-content{\r\nwidth: 100% !important;\r\nposition: absolute  !important;\n}\n.mostrar{\r\n display:list-item !important;\r\n opacity: 1 !important;\r\n position: absolute !important;\r\n background-color:#9995957a;\n}\r\n", ""]);
 
 // exports
 
@@ -54096,6 +54096,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54103,35 +54179,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             arrayDatos: [],
             nombre: "",
             direccion: "",
-            idSur: 0,
+            id_tenan: 0,
+            idSu: 0,
             modal: 0,
-            accion: 0,
             titulo: "",
-            buscar: "",
-            criterio: 'nombre',
+            accion: 0,
+
             arrayTenan: [],
-            idTenan: 0
+            idTenan: 0,
+            //variables de pagination
+            // pagination:{
+            //     total:0,
+            //     current_page:0,
+            //     su_page:0,
+            //     last_page:0,
+            //     from:0,
+            //     to:0
+            // },
+            offset: 3,
+            buscar: '',
+            criterio: 'nombre'
         };
     },
 
     methods: {
-        listSur: function listSur() {
+        cambiarPagina: function cambiarPagina(page, buscar, criterio) {
             var me = this;
-            var url = "/sucursal";
+            //va a la pagina actual
+            me.pagination.current_page = page;
+            //envia al metodo para traer los datos
+            me.listSu(page, criterio, buscar);
+        },
+
+
+        listSu: function listSu(page, criterio, buscar) {
+            var me = this;
+            var url = "/sucursal?page=" + page + '&criterio=' + criterio + '&buscar=' + buscar;
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
                 me.arrayDatos = respuesta.sucursales;
-<<<<<<< HEAD
-=======
                 // me.pagination = respuesta.pagination;
->>>>>>> dayanna
             }).catch(function (error) {
                 console.log(error);
             });
         },
         getTenan: function getTenan() {
             var me = this;
-            var url = "/selecttenan";
+            var url = "/selectTenan";
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
                 me.arrayTenan = respuesta.tenans;
@@ -54139,45 +54233,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        regSur: function regSur() {
+        regSu: function regSu() {
             var me = this;
             var url = "/sucursal/registrar";
             axios.post(url, {
                 nombre: this.nombre,
                 direccion: this.direccion,
-                id_tenan: this.idTenan
+                idTenan: this.idTenan
             }).then(function (response) {
-                alert("se registro correctamente");
-                me.listSur();
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        actSur: function actSur() {
-            var me = this;
-            var url = "/sucursal/actualizar";
-            axios.put(url, {
-                id: this.idSur,
-                nombre: this.nombre,
-                direccion: this.direccion
-            }).then(function (response) {
-                alert("se actualizo correctamente");
-                me.listSur();
+                me.mensaje('Se guardo correctamente');
+                me.listSu();
                 me.cerrarModal();
             }).catch(function (error) {
                 console.log(error);
             });
         },
-        eliminarSur: function eliminarSur() {
-            var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
+        actSu: function actSu() {
             var me = this;
-            var url = "/sucursal/eliminar";
-            axios.post(url, {
-                id: data["id"]
+            var url = "/sucursal/actualizar";
+            axios.put(url, {
+                id: this.idSu,
+                nombre: this.nombre,
+                direccion: this.direccion,
+                idTenan: this.idTenan
             }).then(function (response) {
-                alert("se elimino correctamente");
-                me.listSur();
+                me.listSu();
+                me.mensaje('Se actualizo correctamente');
+                me.cerrarModal();
             }).catch(function (error) {
                 console.log(error);
             });
@@ -54186,18 +54268,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
             switch (accion) {
-                case "guardar":
-                    this.titulo = "registrar sucursal";
-                    accion = 0;
+                case 'guardar':
+                    this.titulo = 'Registrar sucursal';
+                    this.accion = 0;
                     this.limpiar();
                     break;
-                case "editar":
-                    this.titulo = "editar sucursal";
+                case 'editar':
+                    this.titulo = 'Editar sucursal';
                     this.accion = 1;
-                    this.idSur = data['id'];
+                    this.idSu = data['id'];
                     this.nombre = data['nombre'];
                     this.direccion = data['direccion'];
-                    this.id_tenan = data['id_tenan'];
+                    this.idTenan = data["id"];
                     break;
                 default:
                     break;
@@ -54208,28 +54290,86 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modal = 0;
         },
         limpiar: function limpiar() {
-            // this.nombre = "";
+            this.nombre = '';
+        },
+        mensaje: function mensaje(msj) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: msj,
+                showConfirmButton: false,
+                timer: 2000
+            });
+        },
+        mensaje1: function mensaje1() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Se elimino correctamente',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        },
+        eliminarSu: function eliminarSu() {
+            var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+            var me = this;
+            Swal.fire({
+                title: 'Esta seguro de eliminarlo?',
+                text: "No podrás revertir esto!" + data['nombre'],
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar!'
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    // let me = this;
+                    var url = "/sucursal/eliminar";
+                    axios.post(url, {
+                        id: data['id']
+                    }).then(function (response) {
+                        me.listSu();
+                        Swal.fire({
+                            title: "Se elimino correctamente!",
+                            icon: 'success'
+                        });
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            });
+        }
+    },
+    computed: {
+        isActived: function isActived() {
+            return this.pagination.current_page;
+        },
+        //Calcula los elementos de la paginación
+        pagesNumber: function pagesNumber() {
+            if (!this.pagination.to) {
+                return [];
+            }
+            var from = this.pagination.current_page - this.offset;
+            if (from < 1) {
+                from = 1;
+            }
+            var to = from + this.offset * 2;
+            if (to >= this.pagination.last_page) {
+                to = this.pagination.last_page;
+            }
+            var pagesArray = [];
+            while (from <= to) {
+                pagesArray.push(from);
+                from++;
+            }
+            return pagesArray;
         }
     },
     mounted: function mounted() {
-        // console.log('component mounted.')
+        console.log('Component mounted.');
         this.getTenan();
-        this.listSur();
-
-        // if(localStorage.cc) this.cc = localStorage.cc;
-        // if(localStorage.nombre) this.nombre = localStorage.nombre;
-        // if(localStorage.apellidos) this.apellidos = localStorage.apellidos;
-        // },
-        // watch:{
-        //     cc(newCc) {
-        //     localStorage.cc = newCc;
-        //     },
-        //     nombre(newName) {
-        //     localStorage.nombre = newName;
-        //     },
-        //     apellidos(newSurname) {
-        //     localStorage.apellidos = newSurname;
-        //     }
+        this.listSu(1, this.criterio, this.buscar);
     }
 });
 
@@ -54247,11 +54387,13 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
+          _c("i", { staticClass: "fa  fa-bookmark" }),
+          _vm._v(" Sucursales\n                "),
           _c(
             "button",
             {
               staticClass: "btn btn-primary",
-              attrs: { type: "button", "data.toggle": "modal" },
+              attrs: { type: "button", "data-toggle": "modal" },
               on: {
                 click: function($event) {
                   return _vm.abrirModal("guardar")
@@ -54260,17 +54402,19 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "icon-plus" }),
-              _vm._v(" Agregar\n                ")
+              _vm._v(" Nuevo \n                ")
             ]
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
+          _vm._m(1),
+          _vm._v(" "),
           _c(
             "table",
             { staticClass: "table table-bordered table-striped table-sm" },
             [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -54285,7 +54429,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(objeto.nomTenan) }
+                      domProps: { textContent: _vm._s(objeto.nomTen) }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -54293,7 +54437,7 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-warning btn-sm",
-                          attrs: { type: "button", "data.toggle": "modal" },
+                          attrs: { type: "button", "data-toggle": "modal" },
                           on: {
                             click: function($event) {
                               return _vm.abrirModal("editar", objeto)
@@ -54302,15 +54446,15 @@ var render = function() {
                         },
                         [_c("i", { staticClass: "icon-pencil" })]
                       ),
-                      _vm._v(" \n                                "),
+                      _vm._v("  \n                                "),
                       _c(
                         "button",
                         {
                           staticClass: "btn btn-danger btn-sm",
-                          attrs: { type: "button", "data.toggle": "modal" },
+                          attrs: { type: "button", "data-toggle": "modal" },
                           on: {
                             click: function($event) {
-                              return _vm.eliminarSur("objeto")
+                              return _vm.eliminarSu(objeto)
                             }
                           }
                         },
@@ -54332,7 +54476,14 @@ var render = function() {
       {
         staticClass: "modal fade",
         class: { mostrar: _vm.modal },
-        attrs: { id: "modalNuevo" }
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modalNuevo",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "myModalLabel",
+          "aria-hidden": "true"
+        }
       },
       [
         _c(
@@ -54345,7 +54496,7 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-header" }, [
                 _c("h4", {
-                  staticClass: "modal-tittle ",
+                  staticClass: "modal-title",
                   domProps: { textContent: _vm._s(_vm.titulo) }
                 }),
                 _vm._v(" "),
@@ -54353,7 +54504,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "close",
-                    attrs: { type: "button" },
+                    attrs: { type: "button", "aria-label": "Close" },
                     on: { click: _vm.cerrarModal }
                   },
                   [
@@ -54365,145 +54516,164 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("form", { attrs: { action: "", method: "post" } }, [
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-3 form-control-label",
-                        attrs: { for: "input-text" }
-                      },
-                      [_vm._v("Nombre")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-9" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nombre,
-                            expression: "nombre"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "nombre",
-                          name: "nombre",
-                          placeholder: "ingrese su nombre"
-                        },
-                        domProps: { value: _vm.nombre },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nombre = $event.target.value
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", [_vm._v("Ingrese su nombre")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-3 form-control-label",
-                        attrs: { for: "input-text" }
-                      },
-                      [_vm._v("Dirección")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-9" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.direccion,
-                            expression: "direccion"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "direccion",
-                          name: "direccion",
-                          placeholder: "ingrese su direccion"
-                        },
-                        domProps: { value: _vm.direccion },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.direccion = $event.target.value
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", [_vm._v("Ingrese su direccion")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-3 form-control-label",
-                        attrs: { for: "input-text" }
-                      },
-                      [_vm._v("Empresa")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-9" }, [
+                _c(
+                  "form",
+                  {
+                    staticClass: "form-horizontal",
+                    attrs: {
+                      action: "",
+                      method: "post",
+                      enctype: "multipart/form-data"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group row" }, [
                       _c(
-                        "select",
+                        "label",
                         {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Nombre")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.idTenan,
-                              expression: "idTenan"
+                              value: _vm.nombre,
+                              expression: "nombre"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { id: "exampleFormControlSelect1" },
+                          attrs: {
+                            type: "text",
+                            id: "nombre",
+                            name: "nombre",
+                            placeholder: "Nombre de la sucursal"
+                          },
+                          domProps: { value: _vm.nombre },
                           on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.idTenan = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.nombre = $event.target.value
                             }
                           }
-                        },
-                        _vm._l(_vm.arrayTenan, function(objeto) {
-                          return _c("option", {
-                            key: objeto.id,
-                            domProps: {
-                              value: objeto.id,
-                              textContent: _vm._s(objeto.nombre)
-                            }
-                          })
                         }),
-                        0
-                      )
+                        _vm._v(" "),
+                        _c("span", { staticClass: "help-block" }, [
+                          _vm._v("(*) Ingrese el nombre de la sucursal")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Dirección")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.direccion,
+                              expression: "direccion"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "direccion",
+                            name: "direccion",
+                            placeholder: "Dirección"
+                          },
+                          domProps: { value: _vm.direccion },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.direccion = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "help-block" }, [
+                          _vm._v("(*) Ingrese la dirección")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Empresa")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.idTenan,
+                                expression: "idTenan"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { id: "exampleFormControlSelect1" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.idTenan = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          _vm._l(_vm.arrayTenan, function(objeto) {
+                            return _c("option", {
+                              key: objeto.id,
+                              domProps: {
+                                value: objeto.id,
+                                textContent: _vm._s(objeto.nombre)
+                              }
+                            })
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "help-block" }, [
+                          _vm._v("(*) Seleccione la empresa")
+                        ])
+                      ])
                     ])
-                  ])
-                ])
+                  ]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -54511,7 +54681,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data.dismiss": "modal" },
+                    attrs: { type: "button", "data-dismiss": "modal" },
                     on: { click: _vm.cerrarModal }
                   },
                   [_vm._v("Cerrar")]
@@ -54530,7 +54700,7 @@ var render = function() {
                     ],
                     staticClass: "btn btn-primary",
                     attrs: { type: "button" },
-                    on: { click: _vm.regSur }
+                    on: { click: _vm.regSu }
                   },
                   [_vm._v("Guardar")]
                 ),
@@ -54548,9 +54718,61 @@ var render = function() {
                     ],
                     staticClass: "btn btn-primary",
                     attrs: { type: "button" },
-                    on: { click: _vm.actSur }
+                    on: { click: _vm.actSu }
                   },
                   [_vm._v("Actualizar")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modalEliminar",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "myModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-danger",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cerrar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button" },
+                    on: { click: _vm.eliminarSu }
+                  },
+                  [_vm._v("Eliminar")]
                 )
               ])
             ])
@@ -54566,7 +54788,48 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ol", { staticClass: "breadcrumb" }, [
-      _c("i", { staticClass: "fa-fa-book" }, [_vm._v("Home")])
+      _c("li", { staticClass: "breadcrumb-item" }, [_vm._v("Home")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "breadcrumb-item" }, [
+        _c("a", { attrs: { href: "#" } }, [_vm._v("Admin")])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "breadcrumb-item active" }, [_vm._v("Dashboard")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "input-group" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control col-md-3",
+              attrs: { id: "opcion", name: "opcion" }
+            },
+            [_c("option", { attrs: { value: "nombre" } }, [_vm._v("Nombre")])]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "texto",
+              name: "texto",
+              placeholder: "Texto a buscar"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_c("i", { staticClass: "fa fa-search" }), _vm._v(" Buscar")]
+          )
+        ])
+      ])
     ])
   },
   function() {
@@ -54579,10 +54842,39 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Dirección")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Nombre empresa")]),
+        _c("th", [_vm._v("Empresa")]),
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Eliminar sucursal")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("X")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", [_vm._v("Estas seguro de eliminar este sucursal?")])
     ])
   }
 ]
