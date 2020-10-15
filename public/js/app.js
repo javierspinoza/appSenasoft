@@ -14898,6 +14898,8 @@ Vue.component('example-component', __webpack_require__(42));
 Vue.component('roles', __webpack_require__(45));
 Vue.component('tenan', __webpack_require__(51));
 Vue.component('persona', __webpack_require__(56));
+// Vue.component('user', require('./components/User.vue'));
+
 
 var app = new Vue({
   el: '#app',
@@ -50037,6 +50039,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50088,7 +50123,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var me = this;
             var url = "/rol/registrar";
             axios.post(url, {
-                nombre: this.nombre
+                nombre: this.nombre,
+                descripcion: this.descripcion
             }).then(function (response) {
                 me.listRol();
                 me.mensaje('Se guardo correctamente');
@@ -50101,7 +50137,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = "/rol/actualizar";
             axios.put(url, {
                 id: this.idRol,
-                nombre: this.nombre
+                nombre: this.nombre,
+                descripcion: this.descripcion
             }).then(function (response) {
                 me.listRol();
                 me.mensaje('Se actualizo correctamente');
@@ -50144,15 +50181,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             switch (accion) {
                 case 'guardar':
-                    this.titulo = 'Registrar categoria';
+                    this.titulo = 'Registrar rol';
                     this.accion = 0;
                     this.limpiar();
                     break;
                 case 'editar':
-                    this.titulo = 'Editar categoria';
+                    this.titulo = 'Editar rol';
                     this.accion = 1;
                     this.idRol = data['id'];
                     this.nombre = data['nombre'];
+                    this.descripcion = data['descripcion'];
                     break;
                 default:
                     break;
@@ -50164,6 +50202,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         limpiar: function limpiar() {
             this.nombre = '';
+            this.descripcion = '';
         },
         mensaje: function mensaje(msj) {
             Swal.fire({
@@ -50294,6 +50333,10 @@ var render = function() {
                   return _c("tr", { key: objeto.id }, [
                     _c("td", {
                       domProps: { textContent: _vm._s(objeto.nombre) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(objeto.descripcion) }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -50516,6 +50559,50 @@ var render = function() {
                           _vm._v("(*) Ingrese el nombre de la categoría")
                         ])
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Descripción")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.descripcion,
+                              expression: "descripcion"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "descripcion",
+                            name: "descripcion",
+                            placeholder: "Nombre de descripción"
+                          },
+                          domProps: { value: _vm.descripcion },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.descripcion = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "help-block" }, [
+                          _vm._v("(*) Ingrese la descripción")
+                        ])
+                      ])
                     ])
                   ]
                 )
@@ -50672,6 +50759,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Descripción")]),
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")])
       ])

@@ -29,3 +29,9 @@ Route::get('persona','PersonasController@index');
 Route::post('persona/registrar','PersonasController@store');
 Route::put('persona/actualizar','PersonasController@update');
 Route::post('persona/eliminar','PersonasController@destroy');
+
+Route::get('/user', 'UserController@index');
+Route::post('/user/registrar', 'UserController@store');
+Route::put('/user/actualizar', 'UserController@update');
+Route::put('/user/desactivar', 'UserController@desactivar');
+Route::put('/user/activar', 'UserController@activar');

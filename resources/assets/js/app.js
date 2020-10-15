@@ -18,6 +18,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('roles', require('./components/roles.vue'));
 Vue.component('tenan', require('./components/tenans.vue'));
 Vue.component('persona', require('./components/Personas.vue'));
+// Vue.component('user', require('./components/User.vue'));
 
 
 
