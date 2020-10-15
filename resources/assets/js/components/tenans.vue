@@ -20,17 +20,12 @@
                         <div class="input-group">
                             <select class="form-control col-md-3" id="opcion" name="opcion">
                               <option value="nombre">Nombre</option>
-                            </select>
-                            <input type="text" id="texto" name="texto" v-model="buscar" class="form-control" placeholder="Texto a buscar">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-control col-md-3" id="opcion" name="opcion">
                               <option value="nombre">Nit</option>
                             </select>
                             <input type="text" id="texto" name="texto" v-model="buscar" class="form-control" placeholder="Texto a buscar">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                         </div>
+ 
                     </div>
                 </div>
                 <table class="table table-bordered table-striped table-sm">

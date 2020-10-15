@@ -14896,7 +14896,7 @@ window.Vue = __webpack_require__(38);
 
 Vue.component('example-component', __webpack_require__(42));
 Vue.component('roles', __webpack_require__(45));
-Vue.component('empresa', __webpack_require__(51));
+Vue.component('tenan', __webpack_require__(51));
 Vue.component('persona', __webpack_require__(56));
 
 var app = new Vue({
@@ -50948,11 +50948,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51197,39 +51192,6 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _vm._m(2)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group" }, [
-                _vm._m(3),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.buscar,
-                      expression: "buscar"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "texto",
-                    name: "texto",
-                    placeholder: "Texto a buscar"
-                  },
-                  domProps: { value: _vm.buscar },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.buscar = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(4)
               ])
             ])
           ]),
@@ -51238,7 +51200,7 @@ var render = function() {
             "table",
             { staticClass: "table table-bordered table-striped table-sm" },
             [
-              _vm._m(5),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -51594,9 +51556,9 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(6),
+              _vm._m(4),
               _vm._v(" "),
-              _vm._m(7),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
@@ -51650,30 +51612,11 @@ var staticRenderFns = [
         staticClass: "form-control col-md-3",
         attrs: { id: "opcion", name: "opcion" }
       },
-      [_c("option", { attrs: { value: "nombre" } }, [_vm._v("Nombre")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-      [_c("i", { staticClass: "fa fa-search" }), _vm._v(" Buscar")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control col-md-3",
-        attrs: { id: "opcion", name: "opcion" }
-      },
-      [_c("option", { attrs: { value: "nombre" } }, [_vm._v("Nit")])]
+      [
+        _c("option", { attrs: { value: "nombre" } }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "nombre" } }, [_vm._v("Nit")])
+      ]
     )
   },
   function() {
