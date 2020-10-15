@@ -20,6 +20,11 @@ Route::post('rol/registrar','RolesController@store');
 Route::put('rol/actualizar','RolesController@update');
 Route::post('rol/eliminar','RolesController@destroy');
 
+Route::get('tenan','TenanController@index');
+Route::post('tenan/registrar','TenanController@store');
+Route::put('tenan/actualizar','TenanController@update');
+Route::post('tenan/eliminar','TenanController@destroy');
+
 Route::get('persona','PersonasController@index');
 Route::post('persona/registrar','PersonasController@store');
 Route::put('persona/actualizar','PersonasController@update');

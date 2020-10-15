@@ -25,7 +25,8 @@
                     <li @click="menu=5" class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-server"></i> Roles</a>
                     </li>
-                    <li @click="menu=6" class="nav-item">
+                    
+                    <li @click="menu=7" class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-group"></i> Usuarios</a>
                     </li>
                     <li @click="menu=8" class="nav-item">
