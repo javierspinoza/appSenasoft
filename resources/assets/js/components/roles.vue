@@ -47,7 +47,6 @@
                         </tr>                                                                                                                                
                     </tbody>
                 </table>
-
                 <nav>
                     <ul class="pagination">
                         <li class="page-item" v-if="pagination.current_page > 1">
@@ -60,30 +59,7 @@
                             <a class="page-link"  href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar,criterio)">Sig</a>
                         </li>
                     </ul>
-                </nav>
-
-                <!-- <nav>
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#">Ant</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Sig</a>
-                        </li>
-                    </ul>
-                </nav> -->
+                </nav>                
             </div>
         </div>
         <!-- Fin ejemplo de tabla Listado -->
