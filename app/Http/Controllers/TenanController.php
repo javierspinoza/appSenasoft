@@ -42,11 +42,10 @@ class TenanController extends Controller
     }
     public function getTenan(Request $request)
     {
-        $tenans = $Tenan::select('id','nombre','nit')
+        $tenans = Tenan::select('id','nombre','nit')
             ->orderBy('nombre', 'asc')->get();
         return [
-            '$tenans' => $tenans,
-        ];
+            'tenans' => $tenans];
     }
 
     //guardar datos en la bd

@@ -204,7 +204,7 @@
                 var url = "/sucursal?page="+ page+ '&criterio='+criterio+ '&buscar='+buscar;
                 axios.get(url).then(function(response){
                     var respuesta = response.data;
-                    this.arrayDatos = respuesta.sucursales;
+                    me.arrayDatos = respuesta.sucursales;
                     // me.pagination = respuesta.pagination;
                 })
                 .catch(function(error){
