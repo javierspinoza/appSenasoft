@@ -16,13 +16,9 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('roles', require('./components/roles.vue'));
+Vue.component('empresa', require('./components/tenans.vue'));
 Vue.component('persona', require('./components/Personas.vue'));
-// Vue.component('productos', require('./components/Productos.vue'));
-// Vue.component('sucursales', require('./components/Sucursales.vue'));
-// Vue.component('tenans', require('./components/Tenans.vue'));
-// Vue.component('bodage', require('./components/Bodage.vue'));
-// Vue.component('facturas', require('./components/Facturas.vue'));
-// Vue.component('entradas', require('./components/Entradas.vue'));
+
 
 
 const app = new Vue({
