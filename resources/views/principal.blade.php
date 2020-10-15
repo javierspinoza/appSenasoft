@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token()}}">
     <link rel="shortcut icon" href="img/sena.png">
     <link rel="stylesheet" href="css/plantilla.css">
     <title>SenaSoft</title>
@@ -16,60 +16,45 @@
 
         <header class="app-header navbar">
             <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
-                <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
-                <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
+              
             </button>
-            <ul class="nav navbar-nav d-md-down-none">
-                <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Escritorio</a>
-                </li>
-                <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Configuraciones</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item d-md-down-none">
-                    <a class="nav-link" href="#" data-toggle="dropdown">
-                        <i class="icon-bell"></i>
-                        <span class="badge badge-pill badge-danger">5</span>
+            
+            <ul class="nav navbar-nav ml-auto">            
+                <button class="navbar-toggler  d-md-down-none" type="button">
+          
+                  
+                    <a class="dropdown-item" href="{{ route('logout') }}" 
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fa fa-lock"></i> Cerrar sesión</a>
+        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </button>
+ 
+                    <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="img/avatars/7.jpg" class="img-avatar">
+                        <span class="d-md-down-none">{{Auth::user()->usuario}} </span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-header text-center">
-                            <strong>Notificaciones</strong>
-                        </div>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-envelope-o"></i> Notificaciones
-                            <span class="badge badge-success">3</span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-tasks"></i> New
-                            <span class="badge badge-danger">2</span>
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img src="img/alien.png" class="img-avatar" alt="correo">
-                        <span class="d-md-down-none">Admin </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-header text-center">
-                            <strong>Cuenta</strong>
-                        </div>
-                        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
-                        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar sesión</a>
-                    </div>
-                </li>
+               
+          
             </ul>
         </header>
         <div class="app-body">
             <!-- Contenido Principal -->
             
-            @include('plantilla.sidebar')
+           
+            @if(Auth::check())
+            @if (Auth::user()->id_roles == 1)
+                @include('plantilla.sidebar')          
+            @endif
+
+        @endif
             @yield('contenido')
         </div>
     </div>
