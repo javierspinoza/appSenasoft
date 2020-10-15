@@ -19,3 +19,8 @@ Route::get('rol','RolesController@index');
 Route::post('rol/registrar','RolesController@store');
 Route::put('rol/actualizar','RolesController@update');
 Route::post('rol/eliminar','RolesController@destroy');
+
+Route::get('persona','PersonasController@index');
+Route::post('persona/registrar','PersonasController@store');
+Route::put('persona/actualizar','PersonasController@update');
+Route::post('persona/eliminar','PersonasController@destroy');
