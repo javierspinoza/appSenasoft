@@ -18,7 +18,16 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('roles', require('./components/roles.vue'));
 Vue.component('tenan', require('./components/tenans.vue'));
 Vue.component('persona', require('./components/Personas.vue'));
+<<<<<<< HEAD
 
+=======
+Vue.component('producto', require('./components/Productos.vue'));
+// Vue.component('sucursales', require('./components/Sucursales.vue'));
+// Vue.component('tenans', require('./components/Tenans.vue'));
+// Vue.component('bodage', require('./components/Bodage.vue'));
+// Vue.component('facturas', require('./components/Facturas.vue'));
+// Vue.component('entradas', require('./components/Entradas.vue'));
+>>>>>>> cupa
 
 
 const app = new Vue({

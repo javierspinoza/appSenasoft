@@ -29,3 +29,9 @@ Route::get('persona','PersonasController@index');
 Route::post('persona/registrar','PersonasController@store');
 Route::put('persona/actualizar','PersonasController@update');
 Route::post('persona/eliminar','PersonasController@destroy');
+
+Route::get('producto','ProductosController@index');
+Route::get('selectTenan','ProductosController@getTenan');
+Route::post('producto/registrar','ProductosController@store');
+Route::put('producto/actualizar','ProductosController@update');
+Route::post('producto/eliminar','ProductosController@destroy');

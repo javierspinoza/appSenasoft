@@ -9,13 +9,9 @@ class ProductosController extends Controller
 {
     public function index()
     {
-        $productos = Productos::join(
-            'tenans',
-            'productos.id_tenan',
-            '=',
-            'tenan.id'
+        $productos = Productos::join('tenans','productos.id_tenan','=','tenans.id'
         )
-            ->select('tenan.nombre as nomTen')
+            ->select('producto.id','producto.nombre','tenan.nombre as nomTen')
             ->orderBy('nombre', 'asc')
             ->get();
         return [
@@ -46,7 +42,7 @@ class ProductosController extends Controller
         $productos->precio_venta = $request->precio_venta;
         $productos->stock = $request->stock;
         $productos->descripcion = $request->descripcion;
-        $productos->id_tenan = $request->id_tenan;
+        $productos->id_tenan = $request->idTenan;
         $productos->save();
     }
 
@@ -57,7 +53,7 @@ class ProductosController extends Controller
         $productos->precio_venta = $request->precio_venta;
         $productos->stock = $request->stock;
         $productos->descripcion = $request->descripcion;
-        $productos->id_tenan = $request->id_tenan;
+        $productos->id_tenan = $request->idTenan;
         $productos->save();
     }
 
