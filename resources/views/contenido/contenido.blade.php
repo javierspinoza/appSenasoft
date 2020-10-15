@@ -15,6 +15,9 @@
     <template v-if="menu==5">
         <roles></roles>
     </template>
+    <template v-if="menu==8">
+        <bodega></bodega>
+    </template>
     <template v-if="menu==9">
         <tenan></tenan>
     </template>

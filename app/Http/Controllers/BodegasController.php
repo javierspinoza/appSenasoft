@@ -10,8 +10,8 @@ class BodegasController extends Controller
    
     public function index()
     {
-    $bodegas=join('sucursales','bodegas.id_sucursal','=','bodegas.id')
-    ->select('sucursales.nombre as nomSucur')
+    $bodegas=Bodegas::join('sucursales','bodegas.id_sucursal','=','sucursales.id')
+    ->select('bodegas.id','bodegas.nombre','sucursales.nombre as nomSucur')
             
     ->orderBy('nombre','asc')->get();
     return[
@@ -21,23 +21,24 @@ class BodegasController extends Controller
 
 public function store(Request $request)
     {
-        $bodegas         = new Bodegas();
-        $bodegas->nombre = $request->nombre;
-
+        $bodegas=new Bodegas();
+        $bodegas->nombre=$request->nombre;
+        $bodegas->id_sucursal = $request->id_sucursal;
         
         $bodegas->save();
     }
 
     public function update(Request $request)
     {
-        $bodegas         = Bodegas::findOrFail($request->id);
+        $bodegas = Bodegas::findOrfail($request->id);
         $bodegas->nombre = $request->nombre;
+        $bodegas->id_sucursal = $request->id_sucursal;
         $bodegas->save();
     }
 
     public function destroy(Request $request)
     {
-        $bodegas = Bodegas::findOrFail($request->id);
+        $bodegas = Bodegas::findOrfail($request->id);
         $bodegas->delete();
     }
 }

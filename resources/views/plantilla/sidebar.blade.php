@@ -29,7 +29,7 @@
                     <li @click="menu=7" class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-group"></i> Usuarios</a>
                     </li>
-                    <li @click="menu=7" class="nav-item">
+                    <li @click="menu=8" class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-cubes"></i> Bodegas</a>
                     </li>
                     <li @click="menu=9" class="nav-item">

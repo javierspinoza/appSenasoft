@@ -17,6 +17,13 @@ class SucursalesController extends Controller
             'sucursales'=>$sucursales
         ];
     }
+    public function getSucur(Request $request)
+    {
+        $sucursales = Sucursales::select('id','nombre')
+            ->orderBy('nombre', 'asc')->get();
+        return [
+            'sucursales' => $sucursales];
+    }
  
     public function store(Request $request)
     {

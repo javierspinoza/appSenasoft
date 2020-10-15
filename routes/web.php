@@ -57,6 +57,12 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('sucursal/actualizar','SucursalesController@update');
         Route::post('sucursal/eliminar','SucursalesController@destroy');
 
+        Route::get('bodega','BodegasController@index');
+        Route::post('bodega/registrar','BodegasController@store');
+        Route::put('bodega/actualizar','BodegasController@update');
+        Route::post('bodega/eliminar','BodegasController@destroy');
+        Route::get('selectSucur','SucursalesController@getSucur');
+
         // Route::get('sucursal','SucursalesController@index');
         // Route::post('sucursal/registrar','SucursalesController@store');
         // Route::put('sucursal/actualizar','SucursalesController@update');

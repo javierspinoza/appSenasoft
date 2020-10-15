@@ -282,7 +282,7 @@
             },
             limpiar(){
               this.nombre ='';
-              this.direccion ='';
+              this.nombre ='';
             },
             mensaje(msj){
               Swal.fire({
